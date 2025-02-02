@@ -18,6 +18,7 @@ def simulate_LAr(EventRateFile, nEvents=1000000):
     
     # Calculate total rate and bin edges
     total_rate = np.trapz(eventRate, energy)
+    print("Total rate is: ", total_rate)
     bin_edges = np.zeros(len(energy)+1)
     bin_edges[1:-1] = (energy[1:] + energy[:-1])/2
     bin_edges[0] = energy[0] - (energy[1]-energy[0])/2
@@ -71,6 +72,7 @@ def simulate_LAr_Primary(EventRateFile, nEvents=1000000):
     EventRate_file = np.loadtxt(EventRateFile, skiprows=0,delimiter=',')
     energy, eventRate = EventRate_file[:,0], EventRate_file[:,1]
     total_rate = np.trapz(eventRate, energy)
+    print("Total rate is: ", total_rate)
     sampled_energies = choices(energy, weights=eventRate, k=nEvents)
 
     
